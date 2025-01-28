@@ -2,17 +2,16 @@ import datatools as dt
 import data
 import pyperclip
 
-xList = data.time_1
-yList = data.co2_1
+xList = dt.DataProcessor(data.time_1).reduceSecondIntervals().get()
+yList = dt.DataProcessor(data.co2_1).reduceSecondIntervals().get()
 
+dataSet = dt.XYData(xList, yList)
 
-D1 = dt.ApproxDerivative(xList, yList)
+dataSet.calcDerivative()
 
+print(dataSet.getXList())
+print(dataSet.getDerivativeList())
 
-output = dt.DataProcessor(D1.get())
-
-print("data copied to clipboard")
-
-pyperclip.copy(output.reduceSecondIntervals().unconvert().list)
+#pyperclip.copy(output.reduceSecondIntervals().unconvert().list)
 
 

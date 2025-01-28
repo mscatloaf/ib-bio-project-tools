@@ -38,3 +38,25 @@ class ApproxDerivative:
 			deltaY = self.yList[i+1] - self.yList[i] #dy
 			xDerivativeList.append(deltaY / deltaX) #dy/dx
 		return xDerivativeList
+
+class XYData:
+	dList = []
+	def __init__(self, xList, yList):
+		self.xList = xList
+		self.yList = yList
+
+	def fix2xList(self):
+		self.xList = DataProcessor(self.xList).convert().reduceSecondIntervals().get()
+		self.yList = DataProcessor(self.yList).convert().reduceSecondIntervals().get()
+		return self
+	def calcDerivative(self):
+		self.dList = ApproxDerivative(self.xList, self.yList).get()
+
+	def getXList(self):
+		return self.xList
+
+	def getYList(self):
+		return self.yList
+
+	def getDerivativeList(self):
+		return self.dList
