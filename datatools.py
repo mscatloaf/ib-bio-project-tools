@@ -24,6 +24,12 @@ class DataProcessor: #this class contains the main functions I use to process in
 				hlist.append(self.list[i])
 		self.list = hlist
 		return self
+	def mkInt(self):
+		hlist = []
+		for i in range(len(self.list)):
+			hlist.append(int(round(self.list[i])))
+		self.list = hlist
+		return self
 	def get(self):
 		return self.list
 
